@@ -1,5 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const puppeteer = require('puppeteer');
+
 const path = require('path');
 const app = express();
 const port = process.env.PORT || 5000;
@@ -15,6 +17,24 @@ app.post('/api/world', (req, res) => {
     `I received your POST request. This is what you sent me: ${req.body.post}`,
   );
 });
+
+app.get('/api/screenshot', async (req, res) => {
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+    const url = req.query.url;
+    await page.goto(url);
+    const screenshotBuffer = await page.screenshot({encoding: "base64" });
+
+    // Respond with the image
+    res.writeHead(200, {
+        'Content-Type': 'image/png',
+        'Content-Length': screenshotBuffer.length
+    });
+    res.end(screenshotBuffer);
+
+    await browser.close();
+})
+
 if (process.env.NODE_ENV === 'production') {
   // Serve any static files
   app.use(express.static(path.join(__dirname, 'client/build')));
