@@ -4,9 +4,9 @@ import View from './view/view';
 
 const AppUIView = () => {
     return (
-        <div className="AppContainer">
+        <div className="ViewContainer">
             {/* <TopBar /> */}
-            <div className="AppContainer">
+            <div>
                 <View />
             </div>
         </div>

@@ -6,7 +6,7 @@ import HomePageComponent from '../features/HomePage/homePageComponent';
 
 const Main = () => {
     return (
-        <div id="main" className='ViewContainer'>
+        <div id="main">
             <Router>
                 <ErrorBoundary errorMessage="The application has encountered an error.">
                     <React.Fragment>

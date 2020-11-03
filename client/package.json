@@ -14,7 +14,8 @@
     "web-vitals": "^0.2.4",
     "puppeteer": "^5.4.1",
     "react-router-dom": "^5.2.0",
-    "yup": "^0.29.3"
+    "yup": "^0.29.3",
+    "classnames": "^2.2.5"
   },
   "proxy": "http://localhost:5000/",
   "scripts": {
