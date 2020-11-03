@@ -20,7 +20,7 @@ app.post('/api/world', (req, res) => {
 
 app.get('/api/screenshot', async (req, res, next) => {
     try {
-        const browser = await puppeteer.launch();
+        const browser = await puppeteer.launch({args: ['--no-sandbox'] });
         const page = await browser.newPage();
         const url = req.query.url;
         await page.goto(url);
