@@ -15,6 +15,11 @@ const Main = () => {
                             path='/'
                             component={HomePageComponent}
                         />
+                        <Route
+                            exact
+                            path='/home'
+                            component={HomePageComponent}
+                        />
                     </React.Fragment>
                 </ErrorBoundary>
             </Router>

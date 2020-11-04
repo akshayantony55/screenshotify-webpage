@@ -5,10 +5,11 @@ import View from './view/view';
 const AppUIView = () => {
     return (
         <div className="ViewContainer">
-            {/* <TopBar /> */}
+            {/* ToDo: Set  <Header /> */}
             <div>
                 <View />
             </div>
+            {/* ToDo: Set  <Footer /> */}
         </div>
     );
 };

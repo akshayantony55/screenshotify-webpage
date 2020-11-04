@@ -1,15 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import UrlSchema from './submitUrlSchems';
 import './homePageComponent.css';
 import cn from 'classnames';
+import Spinner from '../../Components/spinner/spinner';
 
-const initialValues = {
-    url: ""
-};
 const HomePageComponent = () => {
 
-    const handleSubmit = async (values) => {
+    const [initialValues, setinitialValues] = useState({
+        url: ''
+    });
+    const [loading, setLoading] = useState(false);
+
+    const handleSubmit = async (values, {resetForm}) => {
+        setLoading(true);
+        resetForm({});
         const response = await fetch(`/api/screenshot?url=${encodeURIComponent(values.url)}`, {
             method: 'GET',
             headers: {
@@ -18,6 +23,11 @@ const HomePageComponent = () => {
             },
         });
         const data = await response.text();
+        handleDownload(data);
+        setLoading(false);
+    }
+
+    const handleDownload = (data) => {
         var a = document.createElement("a");
         a.href = "data:image/png;base64," + data;
         a.download = "Image.png";
@@ -69,6 +79,11 @@ const HomePageComponent = () => {
                     );
                 }}
             </Formik>
+            {loading && (
+                <div className="FormOverlay">
+                    <Spinner />
+                </div>
+            )}
         </div>
     );
 };

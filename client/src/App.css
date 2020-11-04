@@ -1,11 +1,17 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
 body{
   margin: 0px;
+  height: 100%;
   font-family: 'Poppins-Regular, sans-serif';
 }
 
 .appContainer {
   position: relative;
-  overflow: hidden;
   height: 100vh;
 }
 
@@ -13,7 +19,7 @@ body{
 .appContainer:before {
   content: ' ';
   display: block;
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
   width: 100%;
